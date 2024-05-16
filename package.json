@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev --compatibility-date=2023-02-05 -- bunx --bun vite",
+    "dev": "bunx --bun vite",
+    "dev:server": "bun run --hot ./functions/api/[[route]].ts",
     "build": "vite build",
     "deploy": "bun build && wrangler pages deploy pages"
   },
