@@ -22,7 +22,7 @@ const App = () => {
     fetchData()
   }, [])
 
-  return <h1>{data?.message}</h1>
+  return <h1>{data?.message} testing</h1>
 }
 
 export default App

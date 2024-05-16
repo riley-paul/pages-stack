@@ -16,7 +16,7 @@ const route = app.get(
   (c) => {
     const { name } = c.req.valid('query')
     return c.json({
-      message: `Hello ${name}!`
+      message: `Hello fasdfasdf ${name}!`
     })
   }
 )
