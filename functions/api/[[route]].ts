@@ -3,30 +3,22 @@ import { Hono } from "hono";
 import { handle } from "hono/cloudflare-pages";
 import { logger } from "hono/logger";
 import { z } from "zod";
+import { drizzle } from "drizzle-orm/d1";
+import { todosTable } from "@/db/schema";
 
-const app = new Hono().basePath("/api");
+type Bindings = {
+  [key in keyof CloudflareBindings]: CloudflareBindings[key];
+};
+
+const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 
 app.use(logger());
 
-const route = app.get(
-  "/hello",
-  zValidator(
-    "query",
-    z.object({
-      name: z.string(),
-    })
-  ),
-  (c) => {
-    const { name } = c.req.valid("query");
-    return c.json({
-      message: `Hello fasdfasdf ${name}!`,
-    });
-  }
-);
+const route = app.get("/", async (c) => {
+  const db = drizzle(c.env.DB);
+  const result = await db.select().from(todosTable).all();
+  return c.json(result);
+});
 
 export type AppType = typeof route;
-export default {
-  port: 5000,
-  fetch: app.fetch,
-};
 export const onRequest = handle(app);

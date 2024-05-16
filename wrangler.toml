@@ -1,8 +1,8 @@
 name = "cfp-hono-react"
 pages_build_output_dir = "./dist"
 
-# [vars]
-# MY_VAR = "my-variable"
+[vars]
+MY_VAR = "my-variable"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
@@ -12,10 +12,10 @@ pages_build_output_dir = "./dist"
 # binding = "MY_BUCKET"
 # bucket_name = "my-bucket"
 
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "my-database"
-# database_id = ""
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "pages-stack"
+database_id = "e6298d6b-5393-4d50-ab59-89aece637b64"
 
 # [ai]
 # binding = "AI"
