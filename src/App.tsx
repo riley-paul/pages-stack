@@ -19,7 +19,7 @@ const App = () => {
 
   const mutation = useMutation({
     mutationFn: async (text: string) => {
-      const res = await client.api.$post({ json: { text } });
+      const res = await client.api.todos.$post({ json: { text } });
       return res.json();
     },
     onSuccess: () => {

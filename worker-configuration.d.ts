@@ -2,6 +2,10 @@
 // by running `wrangler types --env-interface CloudflareBindings`
 
 interface CloudflareBindings {
-	MY_VAR: "my-variable";
-	DB: D1Database;
+  MY_VAR: "my-variable";
+  DB: D1Database;
 }
+
+type Bindings = {
+  [key in keyof CloudflareBindings]: CloudflareBindings[key];
+};
