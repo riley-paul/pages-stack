@@ -12,6 +12,7 @@ import { Button } from "./components/ui/button";
 import { Plus } from "lucide-react";
 import React from "react";
 import { todosQueryOptions } from "./lib/queries";
+import TodoItem from "./components/todo";
 
 const App = () => {
   const query = useQuery(todosQueryOptions);
@@ -30,7 +31,7 @@ const App = () => {
   const [value, setValue] = React.useState("");
 
   return (
-    <main className="mt-12">
+    <main className="my-12">
       <Card className="container2">
         <CardHeader>
           <CardTitle>Todo App</CardTitle>
@@ -62,11 +63,11 @@ const App = () => {
           ) : query.isError ? (
             <p>Error: {query.error.message}</p>
           ) : (
-            <ul>
+            <div className="flex flex-col gap-2">
               {query.data?.map((todo) => (
-                <li key={todo.id}>{todo.text}</li>
+                <TodoItem todo={todo} key={todo.id} />
               ))}
-            </ul>
+            </div>
           )}
         </CardContent>
       </Card>
